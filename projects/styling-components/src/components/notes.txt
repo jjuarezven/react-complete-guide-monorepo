@@ -1,0 +1,72 @@
+Adding dynamic styles:
+    We can add dynamic styles usng this pattern: <div className={`form-control ${!isValid ? "invalid" : ""}`}>
+    depending on the  "isValid" value, we add "invalid" or "" to form-control class.  Note that invalid style is defined on 
+    CourseInput.css
+
+Styled components:
+    install package styled-components
+    This is a way to share components with embedded css
+    Note how to change style dinamically based on props:
+        
+        background: ${(props) => (props.invalid ? "#ffd7d7" : "transparent")};
+
+    What is advantage use of Styled components over normal css file?
+
+    See this article:
+
+    https://blog.logrocket.com/8-reasons-to-use-styled-components-cf3788f0bb4d/
+
+    ---------------------------------------------
+
+    Below:  Here's a condensed overview:
+
+    #1)  Since the styling is a component,
+
+    this component can be shared.
+
+    ---------------------------------------------
+
+    #2)  Inline styling with the
+
+    advantages (abilities) of external CSS styling.
+
+    ---------------------------------------------
+
+    #3)  React & React-Native (mobile) compatible.
+
+    ---------------------------------------------
+
+    #4)  Scoped CSS (not global).
+
+    Example: less chance of CSS name clashing.
+
+    ---------------------------------------------
+
+    #5)  Dynamic conditional styling via props.
+
+    Also,  You can directly use JavaScript to
+
+    dynamically control CSS styling.
+
+    ---------------------------------------------
+
+    #6) Better server-side rendering support.
+
+    ---------------------------------------------
+
+    #7)  Compatible with component unit testing.
+
+    Since the styling is a component.
+
+    ---------------------------------------------
+
+    #8)  Supports SASS.
+
+CSS Modules
+    With CSS Modules, you can create portable, reusable CSS files and no longer need to be concerned with selector name collisions
+     or rules impacting another component’s styles.
+    Often when faced with the styling decision for React apps, developers are torn between using CSS Modules or a CSS-in-JS 
+    (tool for abstracting the CSS to the component level) library like styled-components, Emotion, or styled-jsx. 
+    As CSS-in-JS libraries are becoming more widely used and mainstream for describing styles declaratively, 
+    I’ve noticed that many still believe CSS Modules are the way to go, especially for their modular and reusable qualities 
+    that make the styling experience that much more seamless.
