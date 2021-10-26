@@ -15,6 +15,12 @@ const SimpleInput = (props) => {
     setEnteredNameTouched(true);
   };
 
+  let formIsValid = false;
+  // add all possible controls to validate
+  if (enteredNameIsValid) {
+    formIsValid = true;
+  }
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
     setEnteredNameTouched(true);
@@ -49,7 +55,7 @@ const SimpleInput = (props) => {
         )}
       </div>
       <div className="form-actions">
-        <button>Submit</button>
+        <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>
   );
