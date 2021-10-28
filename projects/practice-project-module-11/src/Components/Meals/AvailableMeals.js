@@ -5,6 +5,7 @@ import MealItem from "./MealsItem/MealItem.js";
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchMeals = async () => {
     try {
@@ -29,6 +30,7 @@ const AvailableMeals = () => {
       }
 
       setMeals(loadedMeals);
+      setIsLoading(false);
     } catch (error) {
       //setError(error.message);
     }
@@ -38,6 +40,13 @@ const AvailableMeals = () => {
     fetchMeals();
   }, []);
 
+  if (isLoading) {
+    return (
+      <section className={classes.mealsLoading}>
+        <p>Loading...</p>
+      </section>
+    );
+  }
   const mealsList = meals.map((meal) => (
     <MealItem
       id={meal.id}
