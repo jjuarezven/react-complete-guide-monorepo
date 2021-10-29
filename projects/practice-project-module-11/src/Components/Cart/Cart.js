@@ -23,6 +23,14 @@ const Cart = (props) => {
   const orderHandler = () => {
     setIsCheckout(true);
   };
+
+  const submitOrderHandler = (userData) => {
+    fetch("https://react-http-2df70-default-rtdb.firebaseio.com/orders.json", {
+      method: "POST",
+      body: JSON.stringify({ user: userData, orderedItems: cartCtx.items })
+    });
+  };
+
   /*
 If we want to pass additional params (not only the event which is passed by default), we can't just write a simple reference:
 
@@ -80,7 +88,9 @@ Both options are equivalent.
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {isCheckout && <Checkout onCancel={props.onClose} />}
+      {isCheckout && (
+        <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
+      )}
       {!isCheckout && modalActions}
     </Modal>
   );

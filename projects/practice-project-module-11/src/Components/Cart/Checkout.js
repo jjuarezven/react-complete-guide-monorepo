@@ -37,7 +37,6 @@ const Checkout = (props) => {
       postalCode: enteredPostalIsValid
     });
 
-    console.log(enteredNameIsValid, enteredPostalIsValid, enteredPostal);
     const formIsValid =
       enteredNameIsValid &&
       enteredStreetIsValid &&
@@ -47,6 +46,13 @@ const Checkout = (props) => {
     if (!formIsValid) {
       return;
     }
+
+    props.onConfirm({
+      name: enteredName,
+      street: enteredStreet,
+      city: enteredCity,
+      postalCode: enteredPostal
+    });
   };
 
   return (
