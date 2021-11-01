@@ -1,7 +1,8 @@
 const reducerActions = {
   increment: "increment",
   decrement: "decrement",
-  increase: "increase"
+  increase: "increase",
+  toggle: "toggle"
 };
 
 export default reducerActions;
