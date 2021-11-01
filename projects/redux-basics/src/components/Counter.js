@@ -1,10 +1,12 @@
 import classes from "./Counter.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import reducerActions from "./common/constants.js";
+import { counterActions } from "../store/index";
 
 const Counter = () => {
   const toggleCounterHandler = () => {
-    dispatch({ type: reducerActions.toggle });
+    //dispatch({ type: reducerActions.toggle });
+    dispatch(counterActions.toggleCounter());
   };
 
   // 4 useSelector permite acceder a valores dentro del state definido en el store
@@ -21,15 +23,18 @@ const Counter = () => {
   const dispatch = useDispatch();
 
   const incrementHandler = () => {
-    dispatch({ type: reducerActions.increment });
+    //dispatch({ type: reducerActions.increment });
+    dispatch(counterActions.increment());
   };
 
   const decrementHandler = () => {
-    dispatch({ type: reducerActions.decrement });
+    //dispatch({ type: reducerActions.decrement });
+    dispatch(counterActions.decrement());
   };
 
   const increaseHandler = () => {
-    dispatch({ type: reducerActions.increase, amount: 5 });
+    //dispatch({ type: reducerActions.increase, amount: 5 });
+    dispatch(counterActions.increase({ amount: 5 }));
   };
 
   return (
