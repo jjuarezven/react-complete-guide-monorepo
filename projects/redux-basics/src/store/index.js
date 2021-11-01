@@ -1,12 +1,13 @@
 import { createStore } from "redux";
+import reducerActions from "../components/common/constants.js";
 
 // 2 el reducer es una funcion que recibe un estado y una accion
 const counterReducer = (state = { counter: 0 }, action) => {
-  if (action.type === "increment") {
+  if (action.type === reducerActions.increment) {
     return { counter: state.counter + 1 };
   }
 
-  if (action.type === "decrement") {
+  if (action.type === reducerActions.decrement) {
     return { counter: state.counter - 1 };
   }
 
