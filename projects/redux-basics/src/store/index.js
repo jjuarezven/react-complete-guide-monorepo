@@ -1,74 +1,11 @@
-import { createStore } from "redux";
-import reducerActions from "../components/common/constants.js";
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import counterReducer from "./counter";
+import authReducer from "./auth";
 
-const initialCounterState = { counter: 0, showCounter: true };
-// 2 el reducer es una funcion que recibe un estado y una accion
-/* const counterReducer = (state = initialState, action) => {
-  if (action.type === reducerActions.increment) {
-    return { ...state, counter: state.counter + 1 };
-  }
-
-  if (action.type === reducerActions.decrement) {
-    return { ...state, counter: state.counter - 1 };
-  }
-
-  if (action.type === reducerActions.increase) {
-    return { ...state, counter: state.counter + action.amount };
-  }
-
-  if (action.type === reducerActions.toggle) {
-    return { ...state, showCounter: !state.showCounter };
-  }
-
-  return state;
-}; */
-
-// 6 using redux toolkit
-const counterSlice = createSlice({
-  name: "counter",
-  initialState: initialCounterState,
-  reducers: {
-    increment(state) {
-      // internally, redux toolkit translates this to code to produce a new state, so we are not mutating state
-      state.counter++;
-    },
-    decrement(state) {
-      state.counter--;
-    },
-    increase(state, action) {
-      // payload is mandatory to pass data using redux toolkit
-      state.counter += action.payload.amount;
-    },
-    toggleCounter(state) {
-      state.showCounter = !state.showCounter;
-    }
-  }
-});
-
-const initialAuthState = {
-  isAuthenticated: false
-};
-
-const authSlice = createSlice({
-  name: "authentication",
-  initialState: initialAuthState,
-  reducers: {
-    login(state) {
-      state.isAuthenticated = true;
-    },
-    logout(state) {
-      state.isAuthenticated = false;
-    }
-  }
-});
-
-// 1 se debe crear un store, debe recibir como parametro una funcion reducer
+// 1 se debe crear un store, debe recibir como parametro al menos una funcion reducer
 //const store = createStore(counterReducer);
 const store = configureStore({
-  reducer: { counter: counterSlice.reducer, auth: authSlice.reducer }
+  reducer: { counter: counterReducer, auth: authReducer }
 });
 
-export const counterActions = counterSlice.actions;
-export const authActions = authSlice.actions;
 export default store;

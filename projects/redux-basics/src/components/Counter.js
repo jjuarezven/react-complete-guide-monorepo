@@ -1,8 +1,7 @@
 // @ts-nocheck
 import classes from "./Counter.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import reducerActions from "./common/constants.js";
-import { counterActions } from "../store/index";
+import { counterActions } from "../store/counter";
 
 const Counter = () => {
   const toggleCounterHandler = () => {
