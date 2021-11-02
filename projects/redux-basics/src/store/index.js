@@ -2,7 +2,7 @@ import { createStore } from "redux";
 import reducerActions from "../components/common/constants.js";
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const initialState = { counter: 0, showCounter: true };
+const initialCounterState = { counter: 0, showCounter: true };
 // 2 el reducer es una funcion que recibe un estado y una accion
 /* const counterReducer = (state = initialState, action) => {
   if (action.type === reducerActions.increment) {
@@ -27,10 +27,10 @@ const initialState = { counter: 0, showCounter: true };
 // 6 using redux toolkit
 const counterSlice = createSlice({
   name: "counter",
-  initialState,
+  initialState: initialCounterState,
   reducers: {
     increment(state) {
-      // internally, redux toolkit translates this to code to produce a new state, so no side effects are triggered
+      // internally, redux toolkit translates this to code to produce a new state, so we are not mutating state
       state.counter++;
     },
     decrement(state) {
@@ -46,9 +46,29 @@ const counterSlice = createSlice({
   }
 });
 
+const initialAuthState = {
+  isAuthenticated: false
+};
+
+const authSlice = createSlice({
+  name: "authentication",
+  initialState: initialAuthState,
+  reducers: {
+    login(state) {
+      state.isAuthenticated = true;
+    },
+    logout(state) {
+      state.isAuthenticated = false;
+    }
+  }
+});
+
 // 1 se debe crear un store, debe recibir como parametro una funcion reducer
 //const store = createStore(counterReducer);
-const store = configureStore({ reducer: counterSlice.reducer });
+const store = configureStore({
+  reducer: { counter: counterSlice.reducer, auth: authSlice.reducer }
+});
 
 export const counterActions = counterSlice.actions;
+export const authActions = authSlice.actions;
 export default store;

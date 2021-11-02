@@ -1,3 +1,4 @@
+// @ts-nocheck
 import classes from "./Counter.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import reducerActions from "./common/constants.js";
@@ -11,11 +12,11 @@ const Counter = () => {
 
   // 4 useSelector permite acceder a valores dentro del state definido en el store
   const counter = useSelector((state) => {
-    return state.counter;
+    return state.counter.counter;
   });
 
   const showCounter = useSelector((state) => {
-    return state.showCounter;
+    return state.counter.showCounter;
   });
 
   // 5 para despachar acciones a nuestro store, usamos el hook useDispatch, la funcion dispatch debe recibir alguna
