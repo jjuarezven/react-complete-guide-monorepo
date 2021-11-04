@@ -3,8 +3,8 @@ import Cart from "./components/Cart/Cart";
 import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
 import { useSelector, useDispatch } from "react-redux";
-import { uiActions } from "./store/ui-slice";
 import Notification from "./components/UI/Notification.js";
+import { sendCartData } from "./store/cart-slice";
 
 let isInitial = true;
 function App() {
@@ -21,6 +21,14 @@ function App() {
   To solve it, we use the isInitial variable
   */
   useEffect(() => {
+    if (isInitial) {
+      isInitial = false;
+      return;
+    }
+
+    dispatch(sendCartData(cart));
+    /*
+    OLD CODE, extracted to a new action creator (sendCartData) on cart-slice
     const sendCartData = async () => {
       dispatch(
         uiActions.showNotification({
@@ -65,6 +73,7 @@ function App() {
         })
       );
     });
+    */
   }, [cart, dispatch]);
 
   return (
