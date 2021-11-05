@@ -4,7 +4,7 @@ import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
 import { useSelector, useDispatch } from "react-redux";
 import Notification from "./components/UI/Notification.js";
-import { sendCartData } from "./store/cart-slice";
+import { sendCartData, fetchCartData } from "./store/cart-actions";
 
 let isInitial = true;
 function App() {
@@ -20,15 +20,26 @@ function App() {
   It's a problem because this will send the initial (i.e. empty) cart to our backend and overwrite any data stored there.
   To solve it, we use the isInitial variable
   */
+
+  useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
+
   useEffect(() => {
     if (isInitial) {
       isInitial = false;
       return;
     }
 
-    dispatch(sendCartData(cart));
+    if (cart.changed) {
+      const cleanCart = {
+        items: cart.items,
+        totalQuantity: cart.totalQuantity
+      };
+      dispatch(sendCartData(cleanCart));
+    }
     /*
-    OLD CODE, extracted to a new action creator (sendCartData) on cart-slice
+    OLD CODE, extracted to a new action creator (sendCartData) on cart-actions
     const sendCartData = async () => {
       dispatch(
         uiActions.showNotification({
