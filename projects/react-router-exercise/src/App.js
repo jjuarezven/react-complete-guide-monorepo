@@ -9,7 +9,9 @@ function App() {
   return (
     <Layout>
       <Switch>
-        <Redirect exact from="/" to="/quotes" />
+        <Route path="/" exact>
+          <Redirect to="/quotes" />
+        </Route>
         <Route path="/quotes" exact>
           <AllQuotes />
         </Route>

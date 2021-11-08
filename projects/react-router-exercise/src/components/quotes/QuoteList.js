@@ -25,7 +25,10 @@ const QuoteList = (props) => {
 
   // every time history.push is executed, the component is re-rendered
   const changeSortingHandler = () => {
-    history.push("/quotes?sort=" + (isSortingAscending ? "desc" : "asc"));
+    history.push({
+      pathname: location.pathname,
+      search: `sort=${isSortingAscending ? "desc" : "asc"}`
+    });
   };
 
   return (
