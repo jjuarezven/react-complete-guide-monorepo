@@ -69,10 +69,10 @@ export async function addComment(requestData) {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.message || "Could not add comment.");
+    throw new Error(requestData.message || "Could not add comment.");
   }
 
-  return { commentId: data.name };
+  return { commentId: requestData.name };
 }
 
 export async function getAllComments(quoteId) {
