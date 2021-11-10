@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-router-exercise"]=this["webpackJsonpreact-router-exercise"]||[]).push([[5],{52:function(e,r,t){"use strict";t.r(r);var c=t(0);r.default=function(){return Object(c.jsx)("div",{className:"centered",children:Object(c.jsx)("p",{children:"Page not found"})})}}}]);
+//# sourceMappingURL=5.0dda43a8.chunk.js.map
