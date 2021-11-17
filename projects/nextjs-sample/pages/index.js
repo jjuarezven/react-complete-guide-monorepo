@@ -23,9 +23,23 @@ const HomePage = (props) => {
   return <MeetupList meetups={props.meetups} />;
 };
 
-// with this function, data is pre-rendered during the first prerender process on server and
-// data is available for seo
-export const getStaticProps = async () => {
+// with this function, data is pre-rendered during the first buils process on server and
+// data is available for seo (useful when data changes not so often)
+/* export const getStaticProps = async () => {
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS
+    },
+    revalidate: 10
+  };
+}; */
+
+// with this function, data is pre-rendered during every ncoming request and data is available for seo
+// (useful when data changes often)
+export const getServerSideProps = async (context) => {
+  const req = context.req;
+  const res = context.res;
+
   return {
     props: {
       meetups: DUMMY_MEETUPS
