@@ -19,8 +19,18 @@ const DUMMY_MEETUPS = [
   }
 ];
 
-const HomePage = () => {
-  return <MeetupList meetups={DUMMY_MEETUPS} />;
+const HomePage = (props) => {
+  return <MeetupList meetups={props.meetups} />;
+};
+
+// with this function, data is pre-rendered during the first prerender process on server and
+// data is available for seo
+export const getStaticProps = async () => {
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS
+    }
+  };
 };
 
 export default HomePage;
