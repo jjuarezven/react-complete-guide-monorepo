@@ -54,7 +54,7 @@ export const getStaticPaths = async () => {
     "mongodb+srv://jose:Perrito1978*@cluster0.p2lad.mongodb.net/meetups?retryWrites=true&w=majority"
   );
   const db = client.db();
-
+  //
   const meetupsCollection = db.collection("meetups");
   const meetups = await meetupsCollection.find({}, { _id: 1 }).toArray();
   client.close();
