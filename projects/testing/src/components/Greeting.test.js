@@ -2,6 +2,8 @@ import { render, screen } from "@testing-library/react";
 import Greeting from "./Greeting.js";
 import userEvent from "@testing-library/user-event";
 
+// render takes into account all components inside <Greeting />, like <Output></Output>
+
 describe("Greeting component", () => {
   test("Renders Hello World as a text", () => {
     render(<Greeting />);
